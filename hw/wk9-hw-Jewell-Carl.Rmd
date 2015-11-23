@@ -86,6 +86,25 @@ new.histogram <- function(dat, theme1, xlab1, title1, density_option) {
 b. Similarly, create a function that when inputting two continuous variables, it will print a scatterplot. Additionally, in the console, print the mean and variance of the two variables as well as the coefficient value of the specified x-variable.  Include arguments to alter the title and a `TRUE` or `FALSE` option to include a smoothing method of *lm* aka a simple linear model line in/on the scatterplot.
 
 ```{r}
+new.scatterplot <- function(dat, title1, t.or.f) {
+  
+  if (t.or.f == 'TRUE') {
+  plot <- ggplot(dat, aes(x=datax, y=datay)) + geom_point() + labs(title = title1) + geom_smooth(method = lm)
+  } else {
+    plot <- ggplot(dat, aes(x=datax, y=datay)) + geom_point() + labs(title = title1)
+  }
+    
+  meanx = mean(dat$datax)
+  meany = mean(dat$datay)
+  variancex = var(dat$datax)
+  variancey = var(dat$datay)
+    
+  print(meanx)
+  print(meany)
+  print(variancex)
+  print(variancey)
+  return(plot)
+}
 
 ```
 
